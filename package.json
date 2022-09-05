@@ -1,0 +1,55 @@
+{
+  "name": "deadshotclient",
+  "version": "1.0.0",
+  "description": "get out",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder",
+    "publish": "electron-builder -p always"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FeeshDev/DeadshotClient.git"
+  },
+  "keywords": [],
+  "author": "Alez",
+  "license": "MIT",
+  "build": {
+    "productName": "Deadshot Client",
+    "appId": "com.github.FeeshDev.deadshotclient",
+    "compression": "normal",
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "FeeshDev",
+        "repo": "DeadshotClient"
+      }
+    ],
+    "files": [
+      "build/**",
+      "src/**.js",
+      "package.json"
+    ],
+    "directories": {
+      "buildResources": "build",
+      "output": "dist/${version}/${platform}/"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "runAfterFinish": false,
+      "installerIcon": "build/icon.ico",
+      "uninstallerIcon": "build/icon.ico"
+    }
+  },
+  "devDependencies": {
+    "electron": "^20.1.1",
+    "electron-builder": "^23.3.3"
+  },
+  "dependencies": {
+    "electron-localshortcut": "^3.2.1"
+  }
+}
