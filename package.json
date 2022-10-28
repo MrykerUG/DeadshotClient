@@ -1,7 +1,7 @@
 {
   "name": "deadshotclient",
-  "version": "1.0.0",
-  "description": "get out",
+  "version": "1.1.0",
+  "description": "Simple and lightweight downloadable client for 3D FPS browser game deadshot.io",
   "main": "src/app.js",
   "scripts": {
     "start": "electron .",
@@ -50,6 +50,7 @@
     "electron-builder": "^23.3.3"
   },
   "dependencies": {
+    "discord-rpc": "^4.0.1",
     "electron-localshortcut": "^3.2.1"
   }
 }

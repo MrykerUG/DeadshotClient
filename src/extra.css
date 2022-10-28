@@ -1,0 +1,15 @@
+#settingsDiv {
+	max-height: 600px;
+	overflow-x: hidden;
+	overflow-y: scroll;
+	padding-right: 25px;
+}
+
+.fpsCounter {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	z-index: 100;
+	color: white;
+	display: none;
+}
