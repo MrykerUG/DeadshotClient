@@ -1,6 +1,7 @@
 const { dialog, app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
 const electronLocalshortcut = require('electron-localshortcut');
+const isDev = require('electron-is-dev');
 
 //* Now kindly fuck off
 app.commandLine.appendSwitch('disable-frame-rate-limit');
@@ -29,6 +30,8 @@ const gameWindow = () => {
 			webSecurity: false
 		}
 	});
+	mainWindow.webContents.send('load', { isDev });
+	console.log(isDev)
 	//mainWindow.webContents.toggleDevTools();
 	mainWindow.loadURL('https://deadshot.io/');
 
@@ -71,6 +74,9 @@ const open = () => {
 	electronLocalshortcut.register(mainWindow, 'F5', () => {
 		if (!mainWindow.isFocused()) return;
 		mainWindow.webContents.reload();
+		mainWindow.webContents.on('did-finish-load', () => {
+			mainWindow.webContents.send('load', { isDev });
+		});
 	});
 	electronLocalshortcut.register(mainWindow, 'F11', () => {
 		if (!mainWindow.isFocused()) return;

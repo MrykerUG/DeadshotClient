@@ -1,4 +1,4 @@
-const { contextBridge, ipcRenderer } = require('electron');
+const { ipcRenderer } = require('electron');
 const $ = (selector) => document.querySelector(selector);
 
 const genSetting = (type, details) => {
@@ -65,6 +65,20 @@ const addSetting = (id, type, cb = () => { }) => {
 }
 
 let path = require('path');
+ipcRenderer.once('load', (e, args) => {
+	const { isDev } = args;
+
+	let link = document.createElement('link');
+	link.setAttribute('rel', 'stylesheet');
+	let extraFilesPath = '';
+	if (isDev) {
+		extraFilesPath = path.resolve(__dirname, '..', 'unpack');
+	} else {
+		extraFilesPath = path.resolve(__dirname, '..', '..', 'app.asar.unpacked', 'unpack');
+	}
+	link.setAttribute('href', path.join(extraFilesPath, 'extra.css'));
+	document.head.appendChild(link);
+});
 window.onload = () => {
 	addEventListener("message", e => {
 		let data = JSON.parse(e.data);
@@ -81,13 +95,7 @@ window.onload = () => {
 	fpsCounter.classList.add('fpsCounter');
 
 	document.body.appendChild(fpsCounter);
-
 	let settings = $('#settingsDiv');
-
-	let link = document.createElement('link');
-	link.setAttribute('rel', 'stylesheet');
-	link.setAttribute('href', path.join(__dirname, 'extra.css'));
-	document.head.appendChild(link);
 
 	settings.addEventListener('wheel', (e) => {
 		settings.scrollBy(0, e.deltaY);

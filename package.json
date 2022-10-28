@@ -1,6 +1,6 @@
 {
   "name": "deadshotclient",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Simple and lightweight downloadable client for 3D FPS browser game deadshot.io",
   "main": "src/app.js",
   "scripts": {
@@ -20,6 +20,9 @@
     "productName": "Deadshot Client",
     "appId": "com.github.FeeshDev.deadshotclient",
     "compression": "normal",
+    "asarUnpack": [
+      "unpack"
+    ],
     "publish": [
       {
         "provider": "github",
@@ -28,6 +31,7 @@
       }
     ],
     "files": [
+      "unpack/**",
       "build/**",
       "src/**.js",
       "package.json"
@@ -51,6 +55,7 @@
   },
   "dependencies": {
     "discord-rpc": "^4.0.1",
+    "electron-is-dev": "^2.0.0",
     "electron-localshortcut": "^3.2.1"
   }
 }
