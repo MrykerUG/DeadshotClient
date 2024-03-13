@@ -2,14 +2,14 @@
   "version": 2,
   "builds": [
     {
-      "src": "package-lock.json",
+      "src": "app.js",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "package lock.json"
+      "dest": "app.js"
     }
   ]
 }
